@@ -20,16 +20,16 @@ The README parser test is supposed to check that a normal project README contain
 - **Is the scope realistic?** The issue estimates 2–4 hours. The intended change is fixture formatting plus removal of the matching expected-failure marker; it does not require a database migration, new endpoint, or LLM integration.
 - **How will I know the fix works?** I plan to run `pytest tests/unit/test_readme_parser.py::TestReadmeParser::test_parse_standard_readme -v`, confirm that it passes without `xfail`, then run the README parser tests and `make test-unit` to check for effects on other consumers of the shared fixture. I will also run `make check` before opening a PR. These checks are planned, not yet executed.
 - **What could expand the scope?** Since the fixture is shared, I need to inspect its other consumers before editing it and preserve intentional Markdown indentation inside code examples. Issue #71 covers a separate heading-hierarchy fixture and should remain separate.
-- **Availability:** When reviewed, issue #70 was open with no assignee, claim comment, or linked PR visible. A claim comment and the cohort ledger entry still need to be completed.
+- **Availability:** When reviewed, issue #70 was open with no assignee, claim comment, or linked PR visible. I posted a claim comment on the issue on November 17, 2026, and recorded my selection in the Howard cohort ledger.
 
 **Branch name:** `fix/70-readme-parser-fixture`
 
 **Submission branch:** https://github.com/bibeshsedhain/pathreview-ai201-fa26-howard/tree/fix/70-readme-parser-fixture
 
-**Setup confirmation:** [ ] App runs locally at localhost:5173
+**Setup confirmation:** [x] App runs locally at localhost:5173
 
-**Setup status:** Fork verified and working branch created on GitHub. This journal commit is the Unit 7 setup commit permitted by the assignment. Local cloning was attempted but terminal network access could not resolve `github.com`; `make setup`, `make run`, and the localhost check have not been completed.
+**Setup status:** Completed on November 17, 2026. Cloned my fork on this working branch and added `upstream` pointing to `https://github.com/codepath/pathreview-ai201-fa26-howard.git`. Created a Python 3.12 virtual environment and ran `make setup` successfully, including dependencies, migrations, seed accounts, and frontend installation. Docker is unavailable on this machine, so local development uses the existing PostgreSQL and Redis services with a separate database named `pathreview_unit7_bibesh`; the connection settings remain in the ignored `.env`. Started the servers with `make run`, verified the PathReview login page at `http://localhost:5173`, and confirmed the API root at `http://localhost:8000/` returns `PathReview API is running`. AI features use the default mock provider; external AI and vector-store integrations were not exercised.
 
-**Cohort ledger:** [ ] Issue added to cohort ledger
+**Cohort ledger:** [x] Issue added to cohort ledger
 
-**Ledger status:** Pending access to the cohort ledger. Entry to add on the Howard tab: Bibesh Sedhain / bibeshsedhain / issue #70.
+**Ledger status:** Added to the [Howard cohort ledger](https://docs.google.com/spreadsheets/d/1-39i16vRXrVwGKUHwxWfg2w_UAgsmxUYaR1oJ2djH8w/edit?gid=739942384#gid=739942384), row 26: Bibesh Sedhain / bibeshsedhain / issue #70. The issue title, Tier 2, and issue link filled automatically; status is `Claimed`.
