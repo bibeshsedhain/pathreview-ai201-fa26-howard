@@ -27,8 +27,7 @@ def sample_resume_text() -> str:
 @pytest.fixture
 def sample_readme_text() -> str:
     """Return a sample README text for testing."""
-    return dedent(
-        """
+    readme = """
     # Weather App
     A weather forecasting application built with React and OpenWeatherMap API.
 
@@ -43,4 +42,4 @@ def sample_readme_text() -> str:
     - Tailwind CSS
     - OpenWeatherMap API
     """
-    )
+    return dedent(readme)
