@@ -59,13 +59,13 @@ Completed the local implementation steps from `PLAN.md`: corrected the shared RE
 Finish local validation and self-review, prepare the commit and PR description, then open a draft PR. Obtain peer or mentor feedback, address it, confirm all five CI jobs, and submit the ready PR through the branch URL.
 
 **Blockers:**
-Draft PR #96 is open. Peer/mentor feedback and the final CI result are pending. This check-in records the actual work date rather than claiming an earlier mid-week submission.
+PR #96 is open and ready for review. All five CI jobs passed on commit `cf9b61a`; peer/mentor feedback is still pending. This check-in records the actual work date rather than claiming an earlier mid-week submission.
 
 ---
 
 ### Check-in 2 (local validation; submission pending — November 17, 2026)
 
-**PR link:** [#96 — correct README parser fixture indentation](https://github.com/codepath/pathreview-ai201-fa26-howard/pull/96) (draft; awaiting feedback and CI).
+**PR link:** [#96 — correct README parser fixture indentation](https://github.com/codepath/pathreview-ai201-fa26-howard/pull/96) (open; ready for review).
 
 **Branch:** `fix/70-readme-parser-fixture`
 
@@ -81,8 +81,8 @@ Updated `tests/unit/test_readme_parser.py::TestReadmeParser.test_parse_standard_
 - [x] Focused README parser suite passes: 15 passed, 1 xfailed (the separate #71 test); `git diff --check` passes.
 - [x] Frontend tests pass: 18 tests across two files.
 - [ ] Integration tests pass: none exist in `tests/integration/`; `make test-integration` reports no tests and errors, while the CI workflow explicitly accepts pytest's no-tests exit status.
-- [ ] All five CI checks are green on PR #96: checks are running; results pending.
+- [x] All five CI jobs passed on PR #96 at commit `cf9b61a`: lint, typecheck, test-unit, test-integration, and frontend. [Successful run](https://github.com/codepath/pathreview-ai201-fa26-howard/actions/runs/44224557383). Later journal-only commits trigger a fresh run, whose current status is visible on the PR.
 
 **Draft PR feedback received from:** none. Peer/mentor review has not occurred.
 
-**Submission status:** Implementation committed and pushed; draft PR #96 opened against `codepath/pathreview-ai201-fa26-howard:main`. Peer feedback, final CI verification, marking the PR ready for review, and Unit 9 course submission remain pending. Finalize this entry with feedback and CI results before submission.
+**Submission status:** PR #96 is open against `codepath/pathreview-ai201-fa26-howard:main` and marked ready for review; all five CI jobs passed on the implementation. Updated the Howard cohort ledger row 26 with the PR link and `PR open (Unit 9)` status. Submitted the same working branch URL through the Unit 9 portal on November 17, 2026, reporting 4 hours; the portal shows `Submit Again`. Peer/mentor feedback has not yet been received and remains outstanding.
