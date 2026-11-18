@@ -3,7 +3,7 @@
 **Issue:** [#70 — README parser test fixture is indented, so it contains no headings](https://github.com/codepath/pathreview-ai201-fa26-howard/issues/70)  
 **Tier:** Tier 2 (`tier-2`)  
 **Working branch:** `fix/70-readme-parser-fixture`  
-**Status:** Unit 9 implementation and local validation complete. The student authorized committing and pushing the prepared changes; PR creation, CI, peer feedback, and portal submission remain pending.
+**Status:** Unit 9 implementation and local validation complete. Implementation committed and pushed; [draft PR #96](https://github.com/codepath/pathreview-ai201-fa26-howard/pull/96) is open. CI, peer feedback, ready-for-review status, and portal submission remain pending.
 
 ### Understand
 
@@ -69,4 +69,4 @@ Read for context and verify without planned production edits:
 - `make test-unit`: **377 passed, 52 xfailed**, with four warnings about existing async mocks. No failing tests or strict XPASS results.
 - `cd frontend && npm test -- --run`: **18 passed** across two files.
 - `make test-integration`: no tests collected; pytest returned 5 and make returned 2. `.github/workflows/ci.yml` explicitly converts pytest exit 5 to success for this empty suite. This is an unexercised integration suite, not a claim that integration tests passed.
-- The focused README parser test result and final diff checks are recorded in the Unit 9 journal. Commit/push publication has been authorized. The upstream PR, live CI checks, peer/mentor feedback, and course submission remain pending; no PR link is available yet.
+- The focused README parser test result and final diff checks are recorded in the Unit 9 journal. The implementation is committed and pushed, and draft PR #96 is open. Live CI checks, peer/mentor feedback, and course submission remain pending.
