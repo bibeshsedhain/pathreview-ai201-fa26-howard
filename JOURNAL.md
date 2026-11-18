@@ -33,3 +33,17 @@ The README parser test is supposed to check that a normal project README contain
 **Cohort ledger:** [x] Issue added to cohort ledger
 
 **Ledger status:** Added to the [Howard cohort ledger](https://docs.google.com/spreadsheets/d/1-39i16vRXrVwGKUHwxWfg2w_UAgsmxUYaR1oJ2djH8w/edit?gid=739942384#gid=739942384), row 26: Bibesh Sedhain / bibeshsedhain / issue #70. The issue title, Tier 2, and issue link filled automatically; status is `Claimed`.
+
+## Unit 8 — Reproduction & solution planning
+
+**Reproduction commit link:** [ae3ca5d — reproduce issue #70 locally](https://github.com/bibeshsedhain/pathreview-ai201-fa26-howard/commit/ae3ca5d5dbfe7129b28114a4e1c44bd98148affe)
+
+**Reproduction summary:**
+I ran `test_parse_standard_readme` locally with `--runxfail`, which exposed the failure `assert 0 > 0` because the shared README fixture's headings have four leading spaces. An in-memory dedented copy produced three headings and the same 39 words using the unchanged parser; the baseline README parser suite reports 13 passed and 2 xfailed.
+
+**PLAN.md link:** [Solution plan for issue #70](https://github.com/bibeshsedhain/pathreview-ai201-fa26-howard/blob/fix/70-readme-parser-fixture/PLAN.md)
+
+**Walkthrough video (recommended):** Not recorded; optional and not graded.
+
+**Blockers or open questions:**
+No blocker to starting the planned Unit 9 fixture/test fix. Recheck shared-fixture consumers before editing, preserve intentional relative indentation and newlines, and keep the separate #71 fixture/xfail unchanged. Detailed reproduction commands, observed results, and environment versions are in [docs/REPRODUCTION-70.md](docs/REPRODUCTION-70.md). Implementation and post-fix validation have not yet been performed.
