@@ -47,3 +47,42 @@ I ran `test_parse_standard_readme` locally with `--runxfail`, which exposed the 
 
 **Blockers or open questions:**
 No blocker to starting the planned Unit 9 fixture/test fix. Recheck shared-fixture consumers before editing, preserve intentional relative indentation and newlines, and keep the separate #71 fixture/xfail unchanged. Detailed reproduction commands, observed results, and environment versions are in [docs/REPRODUCTION-70.md](docs/REPRODUCTION-70.md). Implementation and post-fix validation have not yet been performed.
+
+## Unit 9 — Solution building & PR submission
+
+### Check-in 1 (implementation progress — November 17, 2026)
+
+**Current progress:**
+Completed the local implementation steps from `PLAN.md`: corrected the shared README fixture with `textwrap.dedent`, removed the #70/H-03 strict `xfail`, and strengthened the standard README test to check all three heading names and levels. Added a boundary test confirming that genuinely indented content remains plain text; production parser behavior and issue #71 remain unchanged.
+
+**Next steps:**
+Finish local validation and self-review, prepare the commit and PR description, then publish the authorized commit/push and open a draft PR. Obtain peer or mentor feedback, address it, confirm all five CI jobs, and submit the ready PR through the branch URL.
+
+**Blockers:**
+The student has now authorized committing and pushing the prepared changes. Peer feedback and CI require the later PR workflow. This check-in records the actual work date rather than claiming an earlier mid-week submission.
+
+---
+
+### Check-in 2 (local validation; submission pending — November 17, 2026)
+
+**PR link:** Not created. The prepared implementation is authorized for commit/push; the upstream PR is still pending.
+
+**Branch:** `fix/70-readme-parser-fixture`
+
+**What you built:**
+Corrected the unintended common indentation in the sample README fixture so the existing parser recognizes its title and two section headings. The standard README test now runs as a normal regression test, and an additional test protects the parser's handling of genuinely indented content.
+
+**Tests added or updated:**
+Updated `tests/unit/test_readme_parser.py::TestReadmeParser.test_parse_standard_readme` to expect three headings and their names/levels, retaining its text-preservation and metadata checks. Added `test_parse_indented_heading_as_plain_text` for the four-space-indented input boundary. Existing tests cover empty input, whitespace-only input, heading-free text, and UTF-8 bytes; issue #71 keeps its separate expected-failure marker.
+
+**Self-review confirmation:**
+- [x] `make check` passes: Ruff and Black pass; mypy reports no issues in 76 source files.
+- [x] `make test-unit` passes: 377 passed, 52 xfailed, no failures or strict XPASS results.
+- [x] Focused README parser suite passes: 15 passed, 1 xfailed (the separate #71 test); `git diff --check` passes.
+- [x] Frontend tests pass: 18 tests across two files.
+- [ ] Integration tests pass: none exist in `tests/integration/`; `make test-integration` reports no tests and errors, while the CI workflow explicitly accepts pytest's no-tests exit status.
+- [ ] All five CI checks are green on a PR: pending PR creation.
+
+**Draft PR feedback received from:** none. Peer/mentor review has not occurred.
+
+**Submission status:** Implementation and local validation complete; commit/push publication authorized. PR creation, peer feedback, live CI verification, ledger PR link/status update, and Unit 9 course submission remain pending. This second entry records validation now; finalize it with the actual PR link and feedback at submission.

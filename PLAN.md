@@ -3,7 +3,7 @@
 **Issue:** [#70 — README parser test fixture is indented, so it contains no headings](https://github.com/codepath/pathreview-ai201-fa26-howard/issues/70)  
 **Tier:** Tier 2 (`tier-2`)  
 **Working branch:** `fix/70-readme-parser-fixture`  
-**Status:** Unit 8 reproduction and planning complete; implementation planned for Unit 9.
+**Status:** Unit 9 implementation and local validation complete. The student authorized committing and pushing the prepared changes; PR creation, CI, peer feedback, and portal submission remain pending.
 
 ### Understand
 
@@ -60,3 +60,13 @@ Read for context and verify without planned production edits:
 - **Genuinely indented text such as `"    # code example"`:** leave production behavior at zero headings. The correction applies to test-data construction, not every string passed into `parse`; add a focused assertion if this boundary lacks coverage.
 - **UTF-8 bytes such as `b"# Test README\nContent here"` or an encoded `"# Café README"`:** preserve existing successful decoding and text tests; no public input-type change is intended.
 - **The separate #71 fixture remains broken:** a normal README parser suite run must still report that known XFAIL, rather than accidentally changing its test input or marker as part of #70.
+
+### Unit 9 implementation results
+
+- Applied `textwrap.dedent` only to `sample_readme_text()` and removed the #70/H-03 strict expected-failure marker. The standard test now checks three headings with the expected names and levels, while retaining text-preservation and metadata assertions.
+- Added `test_parse_indented_heading_as_plain_text` to confirm that genuinely indented input remains unchanged and produces no headings. Production parser code and the separate #71 fixture/marker are unchanged.
+- `make check`: passed (Ruff, Black, and mypy; 76 source files checked by mypy).
+- `make test-unit`: **377 passed, 52 xfailed**, with four warnings about existing async mocks. No failing tests or strict XPASS results.
+- `cd frontend && npm test -- --run`: **18 passed** across two files.
+- `make test-integration`: no tests collected; pytest returned 5 and make returned 2. `.github/workflows/ci.yml` explicitly converts pytest exit 5 to success for this empty suite. This is an unexercised integration suite, not a claim that integration tests passed.
+- The focused README parser test result and final diff checks are recorded in the Unit 9 journal. Commit/push publication has been authorized. The upstream PR, live CI checks, peer/mentor feedback, and course submission remain pending; no PR link is available yet.
