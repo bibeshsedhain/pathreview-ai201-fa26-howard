@@ -86,3 +86,34 @@ Updated `tests/unit/test_readme_parser.py::TestReadmeParser.test_parse_standard_
 **Draft PR feedback received from:** none. Peer/mentor review has not occurred.
 
 **Submission status:** PR #96 is open against `codepath/pathreview-ai201-fa26-howard:main` and marked ready for review; all five CI jobs passed on the implementation. Updated the Howard cohort ledger row 26 with the PR link and `PR open (Unit 9)` status. Submitted the same working branch URL through the Unit 9 portal on November 17, 2026, reporting 4 hours; the portal shows `Submit Again`. Peer/mentor feedback has not yet been received and remains outstanding.
+
+## Unit 10 — Iteration & reflection
+
+### Reviewer feedback
+
+**Feedback received:** [ ] Yes  [x] No — still awaiting review
+
+**Summary of feedback:**
+I checked [PR #96](https://github.com/codepath/pathreview-ai201-fa26-howard/pull/96) on November 18, 2026. No reviewer or maintainer comments or submitted reviews had arrived. The PR is open and ready for review, and all five CI checks passed on commit `4e87bf2`; it has not been merged. This records the status at the time of my reflection, rather than assuming no feedback will arrive before the November 25 deadline.
+
+**How you responded:**
+No reviewer response or reviewer-requested change was needed because no feedback had arrived. If feedback comes in, I will read it, reproduce any reported problem, make warranted changes, rerun the relevant checks, and update this journal with the response.
+
+---
+
+### Reflection
+
+**What was harder than you expected?**
+The hardest part was separating a problem in the parser from a problem in the test input. For issue #70, `test_parse_standard_readme` sounded like it was exposing broken README parsing, but `sample_readme_text` in `tests/conftest.py` actually put four spaces before every heading. Running the test with `--runxfail` made the failure visible, and comparing the original fixture with a dedented copy showed the count change from zero headings to three without changing the parser. The formatter mismatch was another surprise: the commit hook passed, but CI used a different Black version and rejected the formatting, so passing a local hook did not automatically mean the PR was ready.
+
+**What did you learn about working in a large codebase?**
+I learned to follow the data into a failing function before deciding which file needs a change. In this case, the useful path was from the assertion in `tests/unit/test_readme_parser.py`, back to the shared fixture, and then into `ReadmeParser._extract_heading_hierarchy` to understand its matching rule. I also had to respect the boundary between my issue and issue #71: both involved indentation, but #71 had a separate fixture and expected-failure marker. Contributing to an existing project meant making a small, explainable change that fit its tests and conventions, rather than changing every related thing I noticed.
+
+**How did AI tools help — and where did they fall short?**
+AI assistance was useful for finding the fixture and its test, explaining why `XFAIL` could hide the underlying assertion, and organizing the reproduction steps into a plan. It also helped prepare the regression assertions, run the checks, and connect the journal to the PR. The limitation was that a plausible explanation or generated patch still needed evidence: the zero-to-three heading comparison and the test output were stronger proof than the explanation alone. The Black mismatch made that especially clear, because the initial formatting satisfied one tool version but failed another; the solution was to change the expression into a form both accepted and verify it again. AI helped move the work forward, but it could not provide real peer feedback or replace checking the actual CI results.
+
+**What would you do differently if you started over?**
+I would run the existing test with its expected-failure marker bypassed earlier, before thinking about changes to the parser. I would also compare the formatter versions in `.pre-commit-config.yaml` and the CI workflow during setup, so the local checks and GitHub results would be less surprising. On the process side, I would arrange a classmate or mentor review as soon as the draft PR was open instead of leaving that step unresolved. My plan would still keep issue #70 narrow, but I would separate implementation, validation, and getting feedback more clearly so that finishing the code did not feel like finishing the entire contribution.
+
+**What are you most proud of from this module?**
+I am most proud of being able to show why a small fix was the right fix. The change corrected the shared README fixture and removed its obsolete `xfail` marker, while the updated test checked the three expected heading names and levels. The additional indented-input test helped protect the distinction between correcting malformed test data and changing how the parser treats real input. Seeing 377 unit tests pass, with 52 remaining expected failures, and then seeing all five CI jobs pass gave the contribution a much stronger basis than simply saying the original test looked fixed.
